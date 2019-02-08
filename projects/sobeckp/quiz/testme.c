@@ -24,13 +24,15 @@ char *inputString()
         101, // 'e'
         114, // 'r' 
         115, // 's'
-        116  // 't'
+        116,  // 't'
+        69, // 'E'
+        91, // '['
     };
 
     char *s;
     char c[6];
     for (int i = 0; i < 5; i++) {
-        int r = rand() % 4;
+        int r = rand() % 6;
         c[i] = asciiValues[r];
     }
     c[5] = '\0';
