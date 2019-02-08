@@ -1,0 +1,136 @@
+        -:    0:Source:testme.c
+        -:    0:Graph:testme.gcno
+        -:    0:Data:testme.gcda
+        -:    0:Runs:10
+        -:    0:Programs:1
+        -:    1:#include<stdio.h>
+        -:    2:#include<string.h>
+        -:    3:#include<stdlib.h>
+        -:    4:#include<time.h>
+        -:    5:
+        -:    6://int r = rand() % 20;
+        -:    7:
+        -:    8:char inputChar()
+        -:    9:{
+        -:   10:    // TODO: 
+        -:   11:    // int asciiValues[] = {
+        -:   12:    //     32, // ' ' 
+        -:   13:    //     40, // '('
+        -:   14:    //     41, // ')'
+        -:   15:    //     91, // '['
+        -:   16:    //     93, // ']'
+        -:   17:    //     97, // 'a'
+        -:   18:    //     120, // 'x'
+        -:   19:    //     123, // '{'
+        -:   20:    //     125 // '}'
+        -:   21:    // };
+        -:   22:
+        -:   23:    // int r = rand() % 9;
+        -:   24:    // char c = asciiValues[r];
+        -:   25:    // return c;
+    99936:   26:    int r = (rand() % 94) + 32;
+    49968:   27:    char c = r;//asciiValues[r];
+    49968:   28:    return c;
+        -:   29:}
+        -:   30:
+        -:   31:char *inputString()
+        -:   32:{
+        -:   33:    //TODO: rewrite this function
+    99936:   34:    int asciiValues[] = {
+        -:   35:        101, // 'e'
+        -:   36:        114, // 'r' 
+        -:   37:        115, // 's'
+        -:   38:        116  // 't'
+        -:   39:    };
+        -:   40:
+        -:   41:    char *s;
+        -:   42:    char c[6];
+   599616:   43:    for (int i = 0; i < 5; i++) {
+   249840:   44:        int r = rand() % 4;
+   249840:   45:        c[i] = asciiValues[r];
+   249840:   46:    }
+    49968:   47:    c[5] = '\0';
+    49968:   48:    s = c;
+    49968:   49:    return s;
+        -:   50:
+        -:   51:    // char *s;
+        -:   52:    // char c[6];
+        -:   53:    // for (int i = 0; i < 5; i++) {
+        -:   54:    //     int r = (rand() % 26) + 97;
+        -:   55:    //     c[i] = r;
+        -:   56:    // }
+        -:   57:    // c[5] = '\0';
+        -:   58:    // s = c;
+        -:   59:    // return s;
+        -:   60:}
+        -:   61:
+        -:   62:void testme()
+        -:   63:{
+       20:   64:  int tcCount = 0;
+        -:   65:  char *s;
+        -:   66:  char c;
+       10:   67:  int state = 0;
+    49968:   68:  while (1)
+        -:   69:  {
+    49968:   70:    tcCount++;
+    49968:   71:    c = inputChar();
+        -:   72:
+    49968:   73:    s = inputString();
+        -:   74:
+    49968:   75:    printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
+        -:   76:
+    52129:   77:    if (c == '[' && state == 0) state = 1;
+    52119:   78:    if (c == '(' && state == 1) state = 2;
+    52162:   79:    if (c == '{' && state == 2) state = 3;
+    52050:   80:    if (c == ' '&& state == 3) state = 4;
+    52133:   81:    if (c == 'a' && state == 4) state = 5;
+    52122:   82:    if (c == 'x' && state == 5) state = 6;
+    52133:   83:    if (c == '}' && state == 6) state = 7;
+    52167:   84:    if (c == ')' && state == 7) state = 8;
+    52174:   85:    if (c == ']' && state == 8) state = 9;
+    58927:   86:    if (s[0] == 'r' && s[1] == 'e'
+    10914:   87:       && s[2] == 's' && s[3] == 'e'
+      388:   88:       && s[4] == 't' && s[5] == '\0'
+       24:   89:       && state == 9)
+        -:   90:    {
+       10:   91:      printf("error ");
+       10:   92:      exit(200);
+        -:   93:    }
+        -:   94:  }
+    #####:   95:}
+        -:   96:
+        -:   97:
+        -:   98:int main(int argc, char *argv[])
+        -:   99:{
+       10:  100:    srand(time(NULL));
+       10:  101:    testme();
+       10:  102:    return 0;
+        -:  103:}
+        -:  104:
+        -:  105:
+        -:  106:// int main(int argc, char *argv[])
+        -:  107:// {
+        -:  108://     srand(time(NULL));
+        -:  109:
+        -:  110://     int count;
+        -:  111://     char *s;
+        -:  112://     while(count < 1000) {
+        -:  113://        s = inputString();
+        -:  114://        printf("%s\n", s);
+        -:  115://        count++;
+        -:  116://    }
+        -:  117://     return 0;
+        -:  118:// }
+        -:  119:
+        -:  120:// int main(int argc, char *argv[])
+        -:  121:// {
+        -:  122://     srand(time(NULL));
+        -:  123://     int count;
+        -:  124://     char c;
+        -:  125://     while(count < 1000) {
+        -:  126://         c = inputChar();
+        -:  127://         printf("%c",c);
+        -:  128://         count++;
+        -:  129://     }
+        -:  130://     return 0;
+        -:  131:// }
