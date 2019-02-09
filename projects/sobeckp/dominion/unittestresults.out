@@ -1,3 +1,7 @@
+File 'dominion.c'
+Lines executed:44.43% of 646
+dominion.c:creating 'dominion.c.gcov'
+
 Testing numHandCards()...
 Test: true
 Test: true
@@ -9,11 +13,19 @@ Test: true
 Test: true
 Test: true
 Test: true
+File 'unittest1.c'
+Lines executed:100.00% of 19
+unittest1.c:creating 'unittest1.c.gcov'
+
 Testing isGameOver()...
 Test 1: true
 Test 2: true
 Test 3: true
 Test 4: true
+File 'unittest2.c'
+Lines executed:100.00% of 37
+unittest2.c:creating 'unittest2.c.gcov'
+
 Testing kingdomCards()...
 Test 1: true
 Test 2: true
@@ -25,22 +37,46 @@ Test 7: true
 Test 8: true
 Test 9: true
 Test 10: true
+File 'unittest3.c'
+Lines executed:100.00% of 17
+unittest3.c:creating 'unittest3.c.gcov'
+
 Testing whoseTurn()...
 Test: false
 Test: false
 Test: false
 Test: false
 Test: false
+File 'unittest4.c'
+Lines executed:100.00% of 16
+unittest4.c:creating 'unittest4.c.gcov'
+
 Testing playSmithy()...
 Test 1: true
 Test 2: true
+File 'cardtest1.c'
+Lines executed:100.00% of 19
+cardtest1.c:creating 'cardtest1.c.gcov'
+
 Testing playAdventurer()...
 Test 1: true
 Test 2: true
 Test 3: true
+File 'cardtest2.c'
+Lines executed:100.00% of 20
+cardtest2.c:creating 'cardtest2.c.gcov'
+
 Testing playGardens()...
 Test 1: true
+File 'cardtest3.c'
+Lines executed:100.00% of 7
+cardtest3.c:creating 'cardtest3.c.gcov'
+
 Testing playVillage()...
 Test 1: false
 Test 2: false
 Test 3: true
+File 'cardtest4.c'
+Lines executed:100.00% of 22
+cardtest4.c:creating 'cardtest4.c.gcov'
+

@@ -1,0 +1,64 @@
+File 'unittest1.c'
+Lines executed:100.00% of 19
+unittest1.c:creating 'unittest1.c.gcov'
+
+File 'dominion.c'
+Lines executed:44.43% of 646
+dominion.c:creating 'dominion.c.gcov'
+
+File 'unittest2.c'
+Lines executed:100.00% of 37
+unittest2.c:creating 'unittest2.c.gcov'
+
+File 'dominion.c'
+Lines executed:44.43% of 646
+dominion.c:creating 'dominion.c.gcov'
+
+File 'unittest3.c'
+Lines executed:100.00% of 17
+unittest3.c:creating 'unittest3.c.gcov'
+
+File 'dominion.c'
+Lines executed:44.43% of 646
+dominion.c:creating 'dominion.c.gcov'
+
+File 'unittest4.c'
+Lines executed:100.00% of 16
+unittest4.c:creating 'unittest4.c.gcov'
+
+File 'dominion.c'
+Lines executed:44.43% of 646
+dominion.c:creating 'dominion.c.gcov'
+
+File 'cardtest1.c'
+Lines executed:100.00% of 19
+cardtest1.c:creating 'cardtest1.c.gcov'
+
+File 'dominion.c'
+Lines executed:44.43% of 646
+dominion.c:creating 'dominion.c.gcov'
+
+File 'cardtest2.c'
+Lines executed:100.00% of 20
+cardtest2.c:creating 'cardtest2.c.gcov'
+
+File 'dominion.c'
+Lines executed:44.43% of 646
+dominion.c:creating 'dominion.c.gcov'
+
+File 'cardtest3.c'
+Lines executed:100.00% of 7
+cardtest3.c:creating 'cardtest3.c.gcov'
+
+File 'dominion.c'
+Lines executed:44.43% of 646
+dominion.c:creating 'dominion.c.gcov'
+
+File 'cardtest4.c'
+Lines executed:100.00% of 22
+cardtest4.c:creating 'cardtest4.c.gcov'
+
+File 'dominion.c'
+Lines executed:44.43% of 646
+dominion.c:creating 'dominion.c.gcov'
+

@@ -1,0 +1,67 @@
+        -:    0:Source:cardtest2.c
+        -:    0:Graph:cardtest2.gcno
+        -:    0:Data:cardtest2.gcda
+        -:    0:Runs:5
+        -:    0:Programs:1
+        -:    1:// Author: Polly Sobeck
+        -:    2:// Program: cardtest1.c
+        -:    3:// Date: 2/9/2019
+        -:    4:// This program tests the testplayAdventurer() card function in
+        -:    5:// dominion.c. Some of the initial variable declarations 
+        -:    6:// were adapted from the example: testUpdateCoins.c
+        -:    7:
+        -:    8:#include "dominion.h"
+        -:    9:#include "dominion_helpers.h"
+        -:   10:#include <string.h>
+        -:   11:#include <stdio.h>
+        -:   12:#include <assert.h>
+        -:   13:#include <stdlib.h>
+        -:   14:#include "rngs.h"
+        -:   15:#include <stdbool.h>
+        -:   16:
+        -:   17:bool asserttrue(bool isTrue) {
+       15:   18:    return isTrue;
+        -:   19:}
+        -:   20:
+        -:   21:void testPlayAdventurer() {
+        -:   22:    struct gameState G;
+       10:   23:    int numPlayer = 2;
+        5:   24:    int seed = 1000;    
+        -:   25:    int r, currentPlayer, cardDrawn,
+        -:   26:        initHandCount, endHandCount,
+        -:   27:        initDeckCount, endDeckCount;
+        -:   28:
+        -:   29:
+        5:   30:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        -:   31:               , remodel, smithy, village, baron, great_hall};
+        -:   32:
+        5:   33:    memset(&G, 23, sizeof(struct gameState));   // clear the game state
+        5:   34:    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        -:   35:
+        5:   36:    currentPlayer = 0;
+        5:   37:    initHandCount = G.handCount[currentPlayer];
+        5:   38:    initDeckCount = G.deckCount[currentPlayer];
+        -:   39:    // printf("%d ", initDeckCount);
+        5:   40:    playAdventurer(currentPlayer, &G);
+        -:   41:
+        5:   42:    endHandCount = G.handCount[currentPlayer];
+        5:   43:    endDeckCount = G.deckCount[currentPlayer];
+        -:   44:    // printf("%d\n", endDeckCount);
+        -:   45:
+        -:   46:    /* Test 1: Assert that the player's hand count increased by 2 (treasure cards) */
+        -:   47:    /* All other cards drawn should have been discarded */
+        5:   48:    printf("Test 1: %s\n", asserttrue((endHandCount - initHandCount) == 2) ? "true" : "false");
+        -:   49:
+        -:   50:    /* Test 2: Assert that the deck's count has decreased by at least 2 */
+        5:   51:    printf("Test 2: %s\n", asserttrue((initDeckCount - endDeckCount) >= 2) ? "true" : "false");
+        -:   52:
+        -:   53:    /* Test 2: Assert that the last drawn card is a treasure card*/
+        5:   54:    cardDrawn = G.hand[currentPlayer][G.handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+       10:   55:    printf("Test 3: %s\n", asserttrue(cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) ? "true" : "false");
+        -:   56:
+        5:   57:}
+        -:   58:
+        -:   59:int main() {
+       10:   60:    printf("Testing playAdventurer()...\n");
+        5:   61:    testPlayAdventurer();
+        5:   62:}

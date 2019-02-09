@@ -1,7 +1,7 @@
         -:    0:Source:unittest1.c
         -:    0:Graph:unittest1.gcno
         -:    0:Data:unittest1.gcda
-        -:    0:Runs:2
+        -:    0:Runs:5
         -:    0:Programs:1
         -:    1:// Author: Polly Sobeck
         -:    2:// Program: unittest1.c
@@ -19,39 +19,39 @@
         -:   14:#include <stdbool.h>
         -:   15:
         -:   16:bool asserttrue(bool isTrue) {
-       20:   17:    return isTrue;
+       50:   17:    return isTrue;
         -:   18:}
         -:   19:
         -:   20:void testNumHandCards() {
         -:   21:    struct gameState G;
-        4:   22:    int numPlayer = 2;
-        2:   23:    int seed = 1000;    
+       10:   22:    int numPlayer = 2;
+        5:   23:    int seed = 1000;    
         -:   24:    int r, p, handCount, numCards;
-        2:   25:    int maxHandCount = 5;
+        5:   25:    int maxHandCount = 5;
         -:   26:
-        2:   27:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        5:   27:    int k[10] = {adventurer, council_room, feast, gardens, mine
         -:   28:               , remodel, smithy, village, baron, great_hall};
         -:   29:
-        2:   30:    memset(&G, 23, sizeof(struct gameState));   // clear the game state
-        2:   31:    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        5:   30:    memset(&G, 23, sizeof(struct gameState));   // clear the game state
+        5:   31:    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
         -:   32:
-       12:   33:    for (p = 0; p < numPlayer; p++)
+       30:   33:    for (p = 0; p < numPlayer; p++)
         -:   34:    {
-       48:   35:        for (handCount = 1; handCount <= maxHandCount; handCount++)
+      120:   35:        for (handCount = 1; handCount <= maxHandCount; handCount++)
         -:   36:        {
-       20:   37:            G.handCount[p] = handCount;
-       20:   38:            numCards = numHandCards(&G);
+       50:   37:            G.handCount[p] = handCount;
+       50:   38:            numCards = numHandCards(&G);
         -:   39:
         -:   40:            //printf("%d ", G.handCount[p]);
         -:   41:            //printf("%d\n", numCards);
         -:   42:
-       20:   43:            printf("Test: %s\n", asserttrue(G.handCount[p] == numCards) ? "true" : "false");
-       20:   44:        }
-        4:   45:        endTurn(&G);
-        4:   46:    }
-        2:   47:}
+       50:   43:            printf("Test: %s\n", asserttrue(G.handCount[p] == numCards) ? "true" : "false");
+       50:   44:        }
+       10:   45:        endTurn(&G);
+       10:   46:    }
+        5:   47:}
         -:   48:
         -:   49:int main() {
-        4:   50:    printf("Testing numHandCards()...\n");
-        2:   51:    testNumHandCards();
-        2:   52:}
+       10:   50:    printf("Testing numHandCards()...\n");
+        5:   51:    testNumHandCards();
+        5:   52:}
