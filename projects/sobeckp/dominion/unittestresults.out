@@ -1,0 +1,46 @@
+Testing numHandCards()...
+Test: true
+Test: true
+Test: true
+Test: true
+Test: true
+Test: true
+Test: true
+Test: true
+Test: true
+Test: true
+Testing isGameOver()...
+Test 1: true
+Test 2: true
+Test 3: true
+Test 4: true
+Testing kingdomCards()...
+Test 1: true
+Test 2: true
+Test 3: true
+Test 4: true
+Test 5: true
+Test 6: true
+Test 7: true
+Test 8: true
+Test 9: true
+Test 10: true
+Testing whoseTurn()...
+Test: false
+Test: false
+Test: false
+Test: false
+Test: false
+Testing playSmithy()...
+Test 1: true
+Test 2: true
+Testing playAdventurer()...
+Test 1: true
+Test 2: true
+Test 3: true
+Testing playGardens()...
+Test 1: true
+Testing playVillage()...
+Test 1: false
+Test 2: false
+Test 3: true
