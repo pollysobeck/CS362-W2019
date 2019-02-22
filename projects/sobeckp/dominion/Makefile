@@ -42,16 +42,17 @@ randomtestresults:
 	make randomtestadventurer
 	make randomtestcard1
 	make randomtestcard2
+	
+	./randomtestadventurer > randomtestadventurer.out
+	./randomtestcard1 > randomtestcard1.out
+	./randomtestcard2 > randomtestcard2.out
 
-	gcov dominion.c > randomtestresults.out
-	./randomtestadventurer >> randomtestresults.out
-	gcov randomtestadventurer.c >> randomtestresults.out
-	./randomtestcard1 >> randomtestresults.out
-	gcov randomtestcard1.c >> randomtestresults.out
-	./randomtestcard2 >> randomtestresults.out
-	gcov randomtestcard2.c >> randomtestresults.out
-
-
+	gcov dominion.c >> randomtestadventurer.out
+	gcov dominion.c >> randomtestcard1.out
+	gcov dominion.c >> randomtestcard2.out	
+	gcov randomtestadventurer.c >> randomtestadventurer.out
+	gcov randomtestcard1.c >> randomtestcard1.out
+	gcov randomtestcard2.c >> randomtestcard2.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

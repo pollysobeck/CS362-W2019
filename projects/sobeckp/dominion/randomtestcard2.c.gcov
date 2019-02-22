@@ -1,0 +1,78 @@
+        -:    0:Source:randomtestcard2.c
+        -:    0:Graph:randomtestcard2.gcno
+        -:    0:Data:randomtestcard2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// Author: Polly Sobeck
+        -:    2:// Program: randomCardTest2.c
+        -:    3:// Date: 2/21/2019
+        -:    4:// This test is a random test for the playSmithy method
+        -:    5:// in dominion.c. It runs 1000 random test for the function
+        -:    6:// and inputs random values for handPos, G.deckCount[currentPlayer],
+        -:    7:// G.numActions, and G.handCount[currentPlayer]
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include <stdlib.h>
+        -:   15:#include "rngs.h"
+        -:   16:#include <stdbool.h>
+        -:   17:#include <time.h> 
+        -:   18:
+        -:   19:bool asserttrue(bool isTrue) {
+     2997:   20:    return isTrue;
+        -:   21:}
+        -:   22:
+        -:   23:void randomTestPlayVillage() {
+     1998:   24:    srand(time(0));
+        -:   25:    struct gameState G;
+      999:   26:    int numPlayer = 2;
+      999:   27:    int seed = 1000;    
+        -:   28:    int r, currentPlayer, handPos,
+        -:   29:        initHandCount, endHandCount,
+        -:   30:        initDeckCount, endDeckCount,
+        -:   31:        initNumActions, endNumActions;
+        -:   32:
+      999:   33:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        -:   34:               , remodel, smithy, village, baron, great_hall};
+        -:   35:
+      999:   36:    memset(&G, 23, sizeof(struct gameState));   // clear the game state
+      999:   37:    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        -:   38:
+      999:   39:    currentPlayer = 0;
+        -:   40:
+      999:   41:    handPos = rand() % 1000;
+      999:   42:    G.numActions = rand() % 1000;
+      999:   43:    G.deckCount[currentPlayer] = rand() % 1000;
+      999:   44:    G.handCount[currentPlayer] = rand() % 1000;
+        -:   45:
+      999:   46:    initHandCount = G.handCount[currentPlayer];
+      999:   47:    initDeckCount = G.deckCount[currentPlayer];
+      999:   48:    initNumActions = G.numActions;
+      999:   49:    playVillage(handPos, currentPlayer, &G);
+        -:   50:
+      999:   51:    endHandCount = G.handCount[currentPlayer];
+      999:   52:    endDeckCount = G.deckCount[currentPlayer];
+      999:   53:    endNumActions = G.numActions;
+        -:   54:
+        -:   55:    /* Test 1: Assert that the player's hand count has not increased */
+        -:   56:    /* All other cards drawn should have been discarded */
+      999:   57:    printf("Test 1: %s\n", asserttrue((endHandCount - initHandCount) == 0) ? "pass" : "fail");
+        -:   58:
+        -:   59:    /* Test 2: Assert that the deck's count has decreased by 1 */
+      999:   60:    printf("Test 2: %s\n", asserttrue((initDeckCount - endDeckCount) == 1)  ? "pass" : "fail");
+        -:   61:
+        -:   62:    /* Test 3: Assert that the number of actions increased by 2 */
+      999:   63:    printf("Test 3: %s\n", asserttrue((endNumActions - initNumActions) == 2)  ? "pass" : "fail");
+      999:   64:}
+        -:   65:
+        -:   66:int main() {
+        1:   67:    printf("Random Test for playVillage()...\n");
+     2000:   68:        for (int i = 1; i < 1000; i++) {
+      999:   69:        printf("Test %d\n", i + 1);
+      999:   70:        randomTestPlayVillage();
+      999:   71:        printf("\n");
+      999:   72:    }
+        1:   73:}

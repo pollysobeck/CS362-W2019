@@ -1,7 +1,10 @@
 // Author: Polly Sobeck
 // Program: randomtestadventurer.c
 // Date: 2/19/2019
-// 
+// This program runs 1000 random tests for the 
+// playAdventurer method in dominion.c. It randomly assigns
+// values for currentPlayer, deckCount[currentPlayer], 
+// handCount[currentPlayer], and discardCount[currentPlayer]
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -26,27 +29,25 @@ void randomTestPlayAdventurer() {
         initHandCount, endHandCount,
         initDeckCount, endDeckCount;
 
-    for (int i = 0; i < 1000; i++) {
-
-        int cards[16] = {adventurer, council_room, feast, gardens, mine, 
-               remodel, smithy, village, baron, great_hall, gardens, 
-              embargo, minion, cutpurse, sea_hag, tribute };
-        int k[10];
+    int k[10] = {adventurer, council_room, feast, gardens, mine, 
+            remodel, smithy, village, baron, great_hall};
 
         memset(&G, 23, sizeof(struct gameState));   // clear the game state
         r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        
+        // Get random values for current player, player's deckCount, handCount, and discardCount
+        currentPlayer = rand() % numPlayer;
+        G.deckCount[currentPlayer] = rand() % 1000;
+        G.handCount[currentPlayer] = rand() % 1000;
+        G.discardCount[(currentPlayer == 0 ? 0 : 1)] = rand() % 1000;
 
-        currentPlayer = 0;
         initHandCount = G.handCount[currentPlayer];
         initDeckCount = G.deckCount[currentPlayer];
-        // printf("%d ", initDeckCount);
+
         playAdventurer(currentPlayer, &G);
 
         endHandCount = G.handCount[currentPlayer];
         endDeckCount = G.deckCount[currentPlayer];
-        // printf("%d\n", endDeckCount);
-
-        printf("Test %d\n", i);
 
         /* Test 1: Assert that the player's hand count increased by 2 (treasure cards) */
         /* All other cards drawn should have been discarded */
@@ -59,11 +60,13 @@ void randomTestPlayAdventurer() {
         cardDrawn = G.hand[currentPlayer][G.handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
         printf("Test Last Drawn Card: %s\n", asserttrue(cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) ? "pass" : "fail");
 
-        printf("\n");
-    }
 }
 
 int main() {
-    printf("Random Test for playAdventurer()...\n");
-    randomTestPlayAdventurer();
+    printf("Random Tests for playAdventurer()...\n");
+    for (int i = 1; i < 1000; i++) {
+        printf("Test %d\n", i + 1);
+        randomTestPlayAdventurer();
+        printf("\n");
+    }
 }
