@@ -99,6 +99,8 @@ protected void setUp() {
          }
          String url = testBuffer.toString();
          boolean result = urlVal.isValid(url);
+         if(result == true)
+        	 System.out.println(url);
          assertEquals(url, expected, result);
          if (printStatus) {
             if (printIndex) {
