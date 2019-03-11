@@ -1,0 +1,36 @@
+        -:    0:Source:cardtest3.c
+        -:    0:Graph:cardtest3.gcno
+        -:    0:Data:-
+        -:    0:Runs:0
+        -:    0:Programs:0
+        -:    1:// Author: Polly Sobeck
+        -:    2:// Program: cardtest3.c
+        -:    3:// Date: 2/9/2019
+        -:    4:// This program tests the testplayGardens() card function in
+        -:    5:// dominion.c. 
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <stdio.h>
+        -:   11:#include <assert.h>
+        -:   12:#include <stdlib.h>
+        -:   13:#include "rngs.h"
+        -:   14:#include <stdbool.h>
+        -:   15:
+        -:   16:bool asserttrue(bool isTrue) {
+    #####:   17:    return isTrue;
+        -:   18:}
+        -:   19:
+        -:   20:void testPlayGardens() {
+        -:   21:    int gardens;
+    #####:   22:    gardens = playGardens();
+        -:   23:
+        -:   24:    /* Test 1: Assert that the return value = -1*/
+    #####:   25:    printf("Test 1: %s\n", asserttrue(gardens == -1) ? "true" : "false");
+    #####:   26:}
+        -:   27:
+        -:   28:int main() {
+    #####:   29:    printf("Testing playGardens()...\n");
+    #####:   30:    testPlayGardens();
+    #####:   31:}

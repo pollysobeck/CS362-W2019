@@ -1,0 +1,57 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// Author: Polly Sobeck
+        -:    2:// Program: unittest1.c
+        -:    3:// Date: 2/9/2019
+        -:    4:// This program tests the numHandCards() function in
+        -:    5:// dominion.c. Some of the initial variable declarations 
+        -:    6:// were adapted from the example: testUpdateCoins.c
+        -:    7:
+        -:    8:#include "dominion.h"
+        -:    9:#include "dominion_helpers.h"
+        -:   10:#include <string.h>
+        -:   11:#include <stdio.h>
+        -:   12:#include <assert.h>
+        -:   13:#include "rngs.h"
+        -:   14:#include <stdbool.h>
+        -:   15:
+        -:   16:bool asserttrue(bool isTrue) {
+       10:   17:    return isTrue;
+        -:   18:}
+        -:   19:
+        -:   20:void testNumHandCards() {
+        -:   21:    struct gameState G;
+        2:   22:    int numPlayer = 2;
+        1:   23:    int seed = 1000;    
+        -:   24:    int r, p, handCount, numCards;
+        1:   25:    int maxHandCount = 5;
+        -:   26:
+        1:   27:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        -:   28:               , remodel, smithy, village, baron, great_hall};
+        -:   29:
+        1:   30:    memset(&G, 23, sizeof(struct gameState));   // clear the game state
+        1:   31:    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        -:   32:
+        6:   33:    for (p = 0; p < numPlayer; p++)
+        -:   34:    {
+       24:   35:        for (handCount = 1; handCount <= maxHandCount; handCount++)
+        -:   36:        {
+       10:   37:            G.handCount[p] = handCount;
+       10:   38:            numCards = numHandCards(&G);
+        -:   39:
+        -:   40:            //printf("%d ", G.handCount[p]);
+        -:   41:            //printf("%d\n", numCards);
+        -:   42:
+       10:   43:            printf("Test: %s\n", asserttrue(G.handCount[p] == numCards) ? "true" : "false");
+       10:   44:        }
+        2:   45:        endTurn(&G);
+        2:   46:    }
+        1:   47:}
+        -:   48:
+        -:   49:int main() {
+        2:   50:    printf("Testing numHandCards()...\n");
+        1:   51:    testNumHandCards();
+        1:   52:}

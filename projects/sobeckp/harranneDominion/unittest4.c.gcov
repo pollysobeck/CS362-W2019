@@ -1,0 +1,50 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// Author: Polly Sobeck
+        -:    2:// Program: unittest4.c
+        -:    3:// Date: 2/9/2019
+        -:    4:// This program tests the whoseTurn() function in
+        -:    5:// dominion.c. Some of the initial variable declarations 
+        -:    6:// were adapted from the example: testUpdateCoins.c
+        -:    7:
+        -:    8:#include "dominion.h"
+        -:    9:#include "dominion_helpers.h"
+        -:   10:#include <string.h>
+        -:   11:#include <stdio.h>
+        -:   12:#include <assert.h>
+        -:   13:#include "rngs.h"
+        -:   14:#include <stdbool.h>
+        -:   15:
+        -:   16:bool asserttrue(bool isTrue) {
+        5:   17:    return isTrue;
+        -:   18:}
+        -:   19:
+        -:   20:void testWhoseTurn() {
+        -:   21:    struct gameState G;
+        2:   22:    int numPlayer = 5;
+        1:   23:    int seed = 1000;    
+        1:   24:    int r, p, currentPlayer = 0;
+        -:   25:
+        1:   26:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        -:   27:               , remodel, smithy, village, baron, great_hall};
+        -:   28:
+        1:   29:    memset(&G, 23, sizeof(struct gameState));   // clear the game state
+        1:   30:    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        -:   31:
+        -:   32:    // Asserts that as each turn is incremented,
+        -:   33:    // whose turn returns the correct players turn
+       12:   34:    for (p = 0; p < numPlayer; p++)
+        -:   35:    {
+        5:   36:            currentPlayer = whoseTurn(&G);
+        5:   37:            printf("Test: %s\n", asserttrue(p == currentPlayer) ? "true" : "false");
+        5:   38:            G.whoseTurn++;
+        5:   39:    }
+        1:   40:}
+        -:   41:
+        -:   42:int main() {
+        2:   43:    printf("Testing whoseTurn()...\n");
+        1:   44:    testWhoseTurn();
+        1:   45:}

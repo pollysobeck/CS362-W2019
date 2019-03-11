@@ -1,0 +1,46 @@
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// Author: Polly Sobeck
+        -:    2:// Program: unittest3.c
+        -:    3:// Date: 2/9/2019
+        -:    4:// This program tests the kingdomCards() function in
+        -:    5:// dominion.c.
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <stdlib.h>
+        -:   10:#include <string.h>
+        -:   11:#include <stdio.h>
+        -:   12:#include <assert.h>
+        -:   13:#include "rngs.h"
+        -:   14:#include <stdbool.h>
+        -:   15:
+        -:   16:bool asserttrue(bool isTrue) {
+       10:   17:    return isTrue;
+        -:   18:}
+        -:   19:
+        -:   20:void testKingdomCards() {
+        2:   21:    int* k = malloc(10 * sizeof(int));
+        1:   22:    k = kingdomCards(estate, province, adventurer, feast, gardens, 
+        -:   23:                    village, baron, steward, tribute, sea_hag);
+        -:   24:
+        1:   25:    printf("Test 1: %s\n", asserttrue(k[0] == estate) ? "true" : "false");
+        1:   26:    printf("Test 2: %s\n", asserttrue(k[1] == province) ? "true" : "false");
+        1:   27:    printf("Test 3: %s\n", asserttrue(k[2] == adventurer) ? "true" : "false");
+        1:   28:    printf("Test 4: %s\n", asserttrue(k[3] == feast) ? "true" : "false");
+        1:   29:    printf("Test 5: %s\n", asserttrue(k[4] == gardens) ? "true" : "false");
+        1:   30:    printf("Test 6: %s\n", asserttrue(k[5] == village) ? "true" : "false");
+        1:   31:    printf("Test 7: %s\n", asserttrue(k[6] == baron) ? "true" : "false");
+        1:   32:    printf("Test 8: %s\n", asserttrue(k[7] == steward) ? "true" : "false");
+        1:   33:    printf("Test 9: %s\n", asserttrue(k[8] == tribute) ? "true" : "false");
+        1:   34:    printf("Test 10: %s\n", asserttrue(k[9] == sea_hag) ? "true" : "false");
+        -:   35:
+        1:   36:}
+        -:   37:
+        -:   38:int main() {
+        2:   39:    printf("Testing kingdomCards()...\n");
+        1:   40:    testKingdomCards();
+        1:   41:}

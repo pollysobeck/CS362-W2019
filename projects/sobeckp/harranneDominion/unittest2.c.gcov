@@ -1,0 +1,79 @@
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// Author: Polly Sobeck
+        -:    2:// Program: unittest2.c
+        -:    3:// Date: 2/9/2019
+        -:    4:// This program tests the isGameOver() function in
+        -:    5:// dominion.c. Some of the initial variable declarations 
+        -:    6:// were adapted from the example: testUpdateCoins.c
+        -:    7:
+        -:    8:#include "dominion.h"
+        -:    9:#include "dominion_helpers.h"
+        -:   10:#include <string.h>
+        -:   11:#include <stdio.h>
+        -:   12:#include <assert.h>
+        -:   13:#include "rngs.h"
+        -:   14:#include <stdbool.h>
+        -:   15:
+        -:   16:bool asserttrue(bool isTrue) {
+        4:   17:    return isTrue;
+        -:   18:}
+        -:   19:
+        -:   20:void testIsGameOver() {
+        -:   21:    struct gameState G;
+        2:   22:    int numPlayer = 2;
+        1:   23:    int seed = 1000;    
+        -:   24:    int r;
+        -:   25:    int gameOver;
+        -:   26:
+        1:   27:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        -:   28:               , remodel, smithy, village, baron, great_hall};
+        -:   29:
+        1:   30:    memset(&G, 23, sizeof(struct gameState));   // clear the game state
+        1:   31:    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        -:   32:
+        -:   33:    // test for the following non-ending states
+        -:   34:    // state 1
+        1:   35:    G.supplyCount[province] = 1;
+       52:   36:    for (int i = 0; i < 25; i++) {
+       25:   37:        G.supplyCount[i] = 3;
+       25:   38:    }
+        1:   39:    gameOver = isGameOver(&G);
+        1:   40:    printf("Test 1: %s\n", asserttrue(gameOver == 0) ? "true" : "false");
+        -:   41:
+        -:   42:    // state 2
+        1:   43:    G.supplyCount[province] = 1;
+        6:   44:    for (int i = 0; i < 2; i++) {
+        2:   45:        G.supplyCount[i] = 0;
+        2:   46:    }
+       48:   47:    for (int i = 2; i < 25; i++) {
+       23:   48:        G.supplyCount[i] = 3;
+       23:   49:    }
+        1:   50:    gameOver = isGameOver(&G);
+        1:   51:    printf("Test 2: %s\n", asserttrue(gameOver == 0) ? "true" : "false");
+        -:   52:
+        -:   53:    // test for the following ending states
+        -:   54:    // state 1
+        1:   55:    G.supplyCount[province] = 1;
+       52:   56:    for (int i = 0; i < 25; i++) {
+       25:   57:        G.supplyCount[i] = 0;
+       25:   58:    }
+        1:   59:    gameOver = isGameOver(&G);
+        1:   60:    printf("Test 3: %s\n", asserttrue(gameOver == 1) ? "true" : "false");
+        -:   61:
+        -:   62:    // state 2
+        1:   63:    G.supplyCount[province] = 0;
+       52:   64:    for (int i = 0; i < 25; i++) {
+       25:   65:        G.supplyCount[i] = 0;
+       25:   66:    }
+        1:   67:    gameOver = isGameOver(&G);
+        1:   68:    printf("Test 4: %s\n", asserttrue(gameOver == 1) ? "true" : "false");
+        1:   69:}
+        -:   70:
+        -:   71:int main() {
+        2:   72:    printf("Testing isGameOver()...\n");
+        1:   73:    testIsGameOver();
+        1:   74:}

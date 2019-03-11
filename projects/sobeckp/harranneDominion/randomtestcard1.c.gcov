@@ -1,0 +1,70 @@
+        -:    0:Source:randomtestcard1.c
+        -:    0:Graph:randomtestcard1.gcno
+        -:    0:Data:randomtestcard1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// Author: Polly Sobeck
+        -:    2:// Program: randomcardtest1.c
+        -:    3:// Date: 2/21/2019
+        -:    4:// This test is a random test for the playSmithy method
+        -:    5:// in dominion.c. It runs 1000 random test for the function
+        -:    6:// and inputs random values for handPos, currentPlayer,
+        -:    7:// G.deckCount[currentPlayer], and G.handCount[currentPlayer]
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include <stdlib.h>
+        -:   15:#include "rngs.h"
+        -:   16:#include <stdbool.h>
+        -:   17:#include <time.h> 
+        -:   18:
+        -:   19:bool asserttrue(bool isTrue) {
+     1998:   20:    return isTrue;
+        -:   21:}
+        -:   22:
+        -:   23:void randomTestPlaySmithy() {
+     1998:   24:    srand(time(0)); 
+        -:   25:    struct gameState G;
+      999:   26:    int numPlayer = 2;
+      999:   27:    int seed = 1000;    
+        -:   28:    int r, currentPlayer, handPos, 
+        -:   29:        initDeckCount, endDeckCount,
+        -:   30:        initHandCount, endHandCount;
+        -:   31:
+        -:   32:
+      999:   33:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        -:   34:               , remodel, smithy, village, baron, great_hall};
+        -:   35:
+      999:   36:    memset(&G, 23, sizeof(struct gameState));   // clear the game state
+      999:   37:    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        -:   38:
+      999:   39:    handPos = rand() % 1000;
+      999:   40:    currentPlayer = rand() % numPlayer;
+      999:   41:    G.deckCount[currentPlayer] = rand() % 1000;
+      999:   42:    G.handCount[currentPlayer] = rand() % 1000;
+        -:   43:
+      999:   44:    initDeckCount = G.deckCount[currentPlayer];
+      999:   45:    initHandCount = G.handCount[currentPlayer];
+        -:   46:
+      999:   47:    smithyEffect(&G, currentPlayer, handPos);
+      999:   48:    endDeckCount = G.deckCount[currentPlayer];
+      999:   49:    endHandCount = G.handCount[currentPlayer];
+        -:   50:
+        -:   51:    /** Test 1: Assert that deck has three fewer cards **/
+      999:   52:    printf("Test 1: %s\n", asserttrue(3 == (initDeckCount - endDeckCount)) ? "pass" : "fail");
+        -:   53:
+        -:   54:    /** Test 2: Assert that hand has two more cards **/
+      999:   55:    printf("Test 2: %s\n", asserttrue(2 == (endHandCount - initHandCount)) ? "pass" : "fail");
+      999:   56:}
+        -:   57:
+        -:   58:int main() {
+        1:   59:    printf("Random Tests for playSmithy()...\n");
+     2000:   60:    for (int i = 1; i < 1000; i++) {
+      999:   61:        printf("Test %d\n", i + 1);
+      999:   62:        randomTestPlaySmithy();
+      999:   63:        printf("\n");
+      999:   64:    }
+        1:   65:}
