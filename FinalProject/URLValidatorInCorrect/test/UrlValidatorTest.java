@@ -360,7 +360,7 @@ public class UrlValidatorTest extends TestCase {
    }
    
    ResultPair[] testSchemes = {
-	   		new ResultPair("http://", true),
+			new ResultPair("http://", true),
 			new ResultPair("http:", false),
 			new ResultPair("http//", false),
 			new ResultPair("https://", true),
@@ -373,38 +373,38 @@ public class UrlValidatorTest extends TestCase {
 			new ResultPair("", false)};
    
    ResultPair[] testAuthority = { 
-		   	new ResultPair("www.google.com", true),
-		  	new ResultPair("test.us", true),
-		  	new ResultPair("google.org", true),
-		  	new ResultPair("google.", false),
-		  	new ResultPair(".google", false),
-		   	new ResultPair("www.usa.gov.", true),
-		    new ResultPair("test.us", true),
-		    new ResultPair("weather.au", true),
-		    new ResultPair("0.0.0.0", true),
-		    new ResultPair("255.255.255.255", true),
-		    new ResultPair("255.org", true),
-		    new ResultPair("www.blah.blah", true),
-		    new ResultPair("blah.blah", true),
-		    new ResultPair("1.2.", false),
-		    new ResultPair(".1.2", false),
-		    new ResultPair("", false)};
+			new ResultPair("www.google.com", true),
+			new ResultPair("test.us", true),
+			new ResultPair("google.org", true),
+			new ResultPair("google.", false),
+			new ResultPair(".google", false),
+			new ResultPair("www.usa.gov.", true),
+			new ResultPair("test.us", true),
+			new ResultPair("weather.au", true),
+			new ResultPair("0.0.0.0", true),
+			new ResultPair("255.255.255.255", true),
+			new ResultPair("255.org", true),
+			new ResultPair("www.blah.blah", true),
+			new ResultPair("blah.blah", true),
+			new ResultPair("1.2.", false),
+			new ResultPair(".1.2", false),
+			new ResultPair("", false)};
    
    ResultPair[] testPath = {
-		    new ResultPair("/testpath", true),
-            new ResultPair("/12345", true),
-            new ResultPair("/testpath\\", false),  //??
-            new ResultPair("/..", false),
-            new ResultPair("/../", false),
-            new ResultPair("/..//..", false),
-            new ResultPair("/testpath/", true),
-            new ResultPair("/testpath1/testpath2", true),
-            new ResultPair("/testpath1//testpath2", false),
-            new ResultPair("", true)};
+			new ResultPair("/testpath", true),
+			new ResultPair("/12345", true),
+			new ResultPair("/testpath\\", false),  //??
+			new ResultPair("/..", false),
+			new ResultPair("/../", false),
+			new ResultPair("/..//..", false),
+			new ResultPair("/testpath/", true),
+			new ResultPair("/testpath1/testpath2", true),
+			new ResultPair("/testpath1//testpath2", false),
+			new ResultPair("", true)};
    
    ResultPair[] testUrlQuery = {
-		    new ResultPair("?action=view", true),
-           	new ResultPair("?action=edit&mode=up", true),
-           	new ResultPair("", true)};
+			new ResultPair("?action=view", true),
+			new ResultPair("?action=edit&mode=up", true),
+			new ResultPair("", true)};
    
 }
